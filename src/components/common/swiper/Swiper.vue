@@ -8,17 +8,17 @@
     >
       <slot></slot>
     </div>
-    <!-- <slot name="indicator">
-      </slot> -->
+    <slot name="indicator">
+      </slot>
     <div class="indicator">
-      <!-- <slot name="indicator" v-if="showIndicator && slideCount>1"> -->
+      <slot name="indicator" v-if="showIndicator && slideCount>1">
       <div
         v-for="(item, index) in slideCount"
         class="indi-item"
         :class="{ active: index === currentIndex - 1 }"
         :key="index"
       ></div>
-      <!-- </slot> -->
+      </slot>
     </div>
   </div>
 </template>
@@ -175,7 +175,7 @@ export default {
       this.setTransform(moveDistance);
     },
 
-    touchEnd: function (e) {
+    touchEnd: function () {
       // 1.获取移动的距离
       let currentMove = Math.abs(this.distance);
 

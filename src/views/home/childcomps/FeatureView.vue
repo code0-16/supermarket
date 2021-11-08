@@ -6,12 +6,6 @@
   </div>
 </template>
 
-<script>
-export default {
-
-}
-</script>
-
 <style scoped>
 .feature img{
   width: 100%;

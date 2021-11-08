@@ -38,12 +38,12 @@
     position: relative;
     /* bottom: 49px; */
     background-color: #fff;
-    /* position: fixed;
+    position: fixed;
     background-color: #fff;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 13; */
+    z-index: 13;
     display: flex;
     text-align: center;
   }

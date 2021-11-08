@@ -37,6 +37,7 @@ export default {
   methods: {
     slideBarItemClick({ maitKey, index }) {
       // 防止反复请求
+      
       if (this.currentIndex === index) return;
       this.currentIndex = index;
       // 每次切换分类初始化tabControl的下标

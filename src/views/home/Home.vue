@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
+    <nav-bar class="home-nav"><div slot="center">仿蘑菇街</div></nav-bar>
     <tab-control  :titles="['流行' , '新款' , '精选']" @tabClick="tabClick" ref="tabControl1" class="tab-control" v-show="isTabFixed"/>
     <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll" :pull-up-load="true" @pullingUp="loadMore">
       <home-swiper :banners="banners" @swiperImageLoad="swiperImageLoad"/>
@@ -24,7 +24,6 @@ import GoodsList from 'components/content/goods/GoodsList'
 import Scroll from 'components/common/scroll/Scroll'
 
 import {getHomeMultidata , getHomeGoods} from 'network/home'
-
 import {itemListenerMixin , backTopMixin} from 'common/mixin'
 
 export default {
@@ -63,14 +62,7 @@ export default {
     this.getHomeGoods('pop')
     this.getHomeGoods('new')
     this.getHomeGoods('sell')
-    },  
-  mounted(){
-    // const refresh = debounce(this.$refs.scroll.refresh,100)
-    
-    //   this.$bus.$on('itemImageLoad' , ()=>{
-    //   this.$refs.scroll && this.$refs.scroll.refresh()
-    //   })
-  },
+    }, 
   activated(){
     this.$refs.scroll.scrollTo(0,this.saveY,0)
     this.$refs.scroll.refresh()
@@ -99,18 +91,19 @@ export default {
     backClick(){
       this.$refs.scroll.scrollTo(0,0,500)
     },
+    //滚轮位置
     contentScroll(position){
       this.isTabFixed = (-position.y) > this.tabOffsetTop
       this.listenerShowBackTop(position)
     },
+    //加载更多
     loadMore(){
       this.getHomeGoods(this.currentType)
     },
+    //监听轮播图加载完成后tabControl2的offsetTop
     swiperImageLoad(){
       this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop;
     },
-    
-   
     // 网络请求相关的方法
     getHomeMultidata(){
       getHomeMultidata().then(res=>{
